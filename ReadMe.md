@@ -143,7 +143,7 @@ This project was developed by **Team FIX MY WAY**:
 - >[Roboflow](https://roboflow.com/)
 - >Kaggle Datasets
 - >Flask and PostgreSQL documentation
-- >Some parts of this project were generated using ChatGPT.
+
 
 
 ---
