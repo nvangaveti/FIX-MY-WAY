@@ -1,0 +1,8 @@
+Flask==2.3.3
+flask_sqlalchemy==3.0.2
+psycopg2==2.9.6          # For PostgreSQL connection
+torch==2.1.0+cpu         # YOLOv8 requires PyTorch, using CPU version here (for simplicity)
+ultralytics==8.0.33      # YOLOv8 package for object detection
+numpy==1.24.2            # Essential for handling data arrays
+Pillow==9.5.0            # For image processing (could be used for handling images)
+requests==2.31.0         # For making HTTP requests (useful for APIs)
