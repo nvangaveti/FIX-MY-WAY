@@ -95,12 +95,6 @@ CREATE TABLE pothole_reports (
 python app2.py
 ```
 
-## 📊 Sample Output Table
-| ID | Location | Highway | Potholes Detected | Processed Image |
-|----|----------|---------|-------------------|-----------------|
-| 1  | 12.9716° N, 77.5946° E | NH44 | 3 | [View](link) |
-| 2  | 19.0760° N, 72.8777° E | Mumbai-Pune Exp | 1 | [View](link) |
-
 ---
 
 ## 📜 License
