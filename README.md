@@ -30,11 +30,6 @@ The system offers:
 
 ---
 
-## 🏗️ Architecture Diagram
-![Architecture Diagram](assets/fix_my_way_architecture.png)
-
----
-
 ## 🛠️ Tech Stack
 | Component       | Technology Used |
 |----------------|----------------|
@@ -99,9 +94,6 @@ CREATE TABLE pothole_reports (
 ```bash
 python app2.py
 ```
-Access at: **http://127.0.0.1:5050/**
-
----
 
 ## 📊 Sample Output Table
 | ID | Location | Highway | Potholes Detected | Processed Image |
@@ -117,7 +109,14 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 ## 👨‍💻 Contributors
-- **Nikhil Vangaveti** – Developer & Project Lead
+This project was developed by **Team FIX MY WAY**:
+1. Nikhil Vangaveti
+2. D.Maheedhar Naidu
+3. Karanam Charan Teja
+4. D.Ruthik Sumesh
+5. Thiruveedula Rohit
+6. Vangaveti Shiva Saketh
+7. T.Parvath Reddy
 
 ---
 
