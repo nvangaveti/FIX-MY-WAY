@@ -103,20 +103,6 @@ Access at: **http://127.0.0.1:5050/**
 
 ---
 
-## 📸 Screenshots
-*(Add your own images here)*
-
-**Home Page**  
-![Home Page](assets/home_page.png)
-
-**Detection Results**  
-![Detection Results](assets/detection_results.png)
-
-**Complaint History**  
-![Complaint History](assets/complaint_history.png)
-
----
-
 ## 📊 Sample Output Table
 | ID | Location | Highway | Potholes Detected | Processed Image |
 |----|----------|---------|-------------------|-----------------|
