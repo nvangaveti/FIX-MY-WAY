@@ -1,0 +1,243 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background & Font */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://media.istockphoto.com/id/538665318/photo/modern-buildings-with-empty-road.jpg?s=612x612&w=0&k=20&c=-sZ2qOT5M7YcO1bDcK7X34mRp-_fWuMuV3R-LZHySog=') no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: blur(2px);
+  color: #333;
+  padding-top: 70px; /* Enough space for navbar */
+}
+
+/* Navbar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #111;
+  color: white;
+  padding: 1rem 2rem;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Main content wrapper */
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* for responsiveness on smaller screens */
+  gap: 40px;
+  padding: 80px 20px;
+}
+
+/* Left Side: Complaint Form */
+.container {
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 500px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  min-height: 520px; /* Ensures height matches right side */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.container p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin: 15px 0 5px;
+  font-weight: 600;
+}
+
+form input[type="text"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+#getLocationBtn {
+  background-color: #000;
+  color: #ff3c90;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#getLocationBtn:hover {
+  background-color: #222;
+}
+
+#locationOutput {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.submit-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #111;
+}
+
+/* Right Side: Camera Section */
+.camera-section {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  width: 500px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 520px; /* Match form's height */
+}
+
+/* Make image-holder dynamic */
+.image-holder {
+  width: 100%;
+  flex-grow: 1;
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 4:3 Aspect Ratio Trick (fallback size) */
+.image-holder::before {
+  content: '';
+  display: block;
+  padding-top: 75%;
+}
+
+.image-holder video,
+.image-holder img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.camera-button-group {
+  margin-top: 15px;
+}
+
+#accessBtn {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: black;
+  color: magenta;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.camera-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* spacing between buttons */
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.camera-actions button {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  background-color: #111; /* dark base */
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.camera-actions button:hover {
+  background-color: #444; /* slightly lighter on hover */
+  transform: translateY(-3px); /* smooth lift effect */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.camera-actions button:active {
+  transform: scale(0.97); /* slight press effect */
+}

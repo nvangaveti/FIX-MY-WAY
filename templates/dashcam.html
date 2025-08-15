@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coming Soon | Fix My Way</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: url('https://media.istockphoto.com/id/538665318/photo/modern-buildings-with-empty-road.jpg?s=612x612&w=0&k=20&c=-sZ2qOT5M7YcO1bDcK7X34mRp-_fWuMuV3R-LZHySog=') no-repeat center center/cover;
+      color: white;
+      position: relative;
+    }
+
+    .navbar {
+      width: 100%;
+      background-color: #1a1a1a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 16px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00bcd4;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00bcd4;
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      animation: fadeIn 2s ease-in-out forwards;
+      opacity: 0;
+      padding: 0 20px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-color: #00bcd4;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #0194a7;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 150, 170, 0.5);
+    }
+
+    h2 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      animation: blink 1.5s infinite;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>FIX MY WAY</h1>
+    <div class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+    </div>
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h2>FIX MY WAY</h2>
+    <p>A modern solution for highway complaint registration</p>
+    <p>Using Machine Learning for better roads in Madhya Pradesh</p>
+
+    <button class="cta-button" id="dashcamButton" onclick="handleDashcamClick()">Access the Dashcam</button>
+  </div>
+
+  <script>
+    function handleDashcamClick() {
+      alert("No dash cam has been detected");
+      const button = document.getElementById("dashcamButton");
+      button.textContent = "Try other complaining methods";
+      button.onclick = function() {
+        window.location.href = "{{ url_for('index') }}";
+      };
+    }
+  </script>
+  <script>
+  let videoStream = null;
+  let captureInterval = null;
+
+  async function handleDashcamClick() {
+    const button = document.getElementById("dashcamButton");
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const video = document.createElement('video');
+      video.autoplay = true;
+      video.style.display = 'none';
+      document.body.appendChild(video);
+      video.srcObject = stream;
+      videoStream = stream;
+
+      button.textContent = "Stop Dashcam";
+      button.onclick = stopDashcam;
+
+      // Start capturing frames every 3 seconds
+      captureInterval = setInterval(() => {
+        captureAndSendFrame(video);
+      }, 3000);
+    } catch (err) {
+      alert("No dash cam has been detected or permission denied.");
+      button.textContent = "Try other complaining methods";
+      button.onclick = function () {
+        window.location.href = "{{ url_for('index') }}";
+      };
+    }
+  }
+
+  function stopDashcam() {
+    const button = document.getElementById("dashcamButton");
+    if (videoStream) {
+      videoStream.getTracks().forEach(track => track.stop());
+      videoStream = null;
+    }
+    clearInterval(captureInterval);
+    button.textContent = "Access the Dashcam";
+    button.onclick = handleDashcamClick;
+    alert("Dashcam stopped. You can check Complaint History now.");
+  }
+
+  function captureAndSendFrame(video) {
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    canvas.toBlob(blob => {
+      const formData = new FormData();
+      formData.append('frame', blob, 'frame.jpg');
+
+      fetch('/process_frame', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => console.log("Detection:", data))
+      .catch(err => console.error("Error:", err));
+    }, 'image/jpeg');
+  }
+</script>
+
+</body>
+</html>

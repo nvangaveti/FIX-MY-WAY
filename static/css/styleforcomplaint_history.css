@@ -1,0 +1,112 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111;
+  padding: 15px 30px;
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #00aced;
+}
+
+/* General Reset & Font */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://media.istockphoto.com/id/538665318/photo/modern-buildings-with-empty-road.jpg?s=612x612&w=0&k=20&c=-sZ2qOT5M7YcO1bDcK7X34mRp-_fWuMuV3R-LZHySog=') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+/* Overlay Container (Table Wrapper) */
+.overlay-box {
+  background-color: rgba(0, 0, 0, 0.65); /* Slightly darker for contrast */
+  padding: 30px;
+  margin: 50px auto;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 95%;
+  overflow-x: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Section Title */
+.section-title {
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Complaint Table Styling */
+.complaint-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #222;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.complaint-table th,
+.complaint-table td {
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  text-align: center;
+}
+
+.complaint-table th {
+  background-color: #222;
+  color: white;
+}
+
+.complaint-table tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+.complaint-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.complaint-table a {
+  color: #007acc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.complaint-table a:hover {
+  text-decoration: underline;
+}
+
+.complaint-table img {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-width: 100px;
+  height: auto;
+}

@@ -1,0 +1,23 @@
+$(document).ready(function(){
+    $('.team-slider').slick({
+        slidesToShow: 3,   // Show only 3 members at a time
+        slidesToScroll: 1,  // Scroll one member at a time
+        autoplay: false,    // Disable auto-scroll
+        arrows: true,       // Enable navigation arrows
+        dots: true,         // Enable navigation dots
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2   // Show 2 members on tablets
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1   // Show 1 member on mobile
+                }
+            }
+        ]
+    });
+});

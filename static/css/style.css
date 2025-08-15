@@ -1,0 +1,479 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #000;
+    color: white;
+}
+
+.top-bar {
+    background: #222;
+    color: #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+nav {
+    background: #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+
+nav ul li a.active, nav ul li a:hover {
+    background: red;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.hero {
+    background: url('https://media.istockphoto.com/id/538665318/photo/modern-buildings-with-empty-road.jpg?s=612x612&w=0&k=20&c=-sZ2qOT5M7YcO1bDcK7X34mRp-_fWuMuV3R-LZHySog=') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    margin-top: 60px;
+}
+
+
+.hero .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.hero button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background: red;
+    border: none;
+}
+
+/* About Section */
+.about {
+    
+    padding: 100px 50px;
+    background: white;
+    color: black;
+    text-align: center;
+    .no-underline {
+    text-decoration: none;
+}
+
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.about .text {
+    flex: 1;
+    text-align: left;
+    padding: 20px;
+}
+
+.about .image img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+/* Services Section */
+.services {
+
+    text-align: center;
+    padding: 80px 50px;
+    background: #fff;
+    color: black;
+
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    color: #222;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-box {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 30px;
+    width: 30%;
+    text-align: center;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+.service-box .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: red;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.service-box:hover {
+    background: red;
+    color: white;
+    border: none;
+}
+
+.service-box:hover .icon {
+    color: white;
+}
+
+/* Portfolio Section Styling */
+.portfolio-section {
+    background: url('https://totallossappraisals.com/wp-content/uploads/Smooth-Journeys-Experience-Americas-Finest-Roads-scaled.webp') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+/* Dark Overlay */
+.portfolio-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark transparent overlay */
+}
+
+/* Content Styling */
+.portfolio-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    padding: 20px;
+}
+
+/* Heading */
+.portfolio-content h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+/* Paragraph */
+.portfolio-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Button */
+.portfolio-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.portfolio-btn:hover {
+    background: white;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Team Section */
+.team {
+    padding: 50px 20px;
+    background: white;
+}
+
+.section-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section-subtitle {
+    font-size: 1.1em;
+    color: gray;
+    margin-bottom: 30px;
+}
+
+/* Team Member Styling */
+.team-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-member {
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+}
+
+.team-member p {
+    color: gray;
+    font-size: 0.9em;
+}
+
+/* Slick Carousel Navigation */
+.slick-prev,
+.slick-next {
+    font-size: 24px;
+    color: black;
+    z-index: 10;
+}
+
+.slick-prev {
+    left: -40px;
+}
+
+.slick-next {
+    right: -40px;
+}
+
+.slick-dots {
+    bottom: -30px;
+}
+
+.slick-dots li button:before {
+    font-size: 12px;
+    color: #333;
+}
+
+.slick-dots li.slick-active button:before {
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Contact Section */
+.contact {
+    padding: 50px 20px;
+    background: white;
+}
+
+.section-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section-subtitle {
+    font-size: 1.1em;
+    color: gray;
+    margin-bottom: 30px;
+}
+
+/* Contact Grid */
+.contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Contact Box */
+.contact-box {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    flex: 1 1 280px; /* responsive flexibility */
+    max-width: 300px;
+}
+
+.contact-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Icon Styling */
+.icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed orange;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contact Box Text */
+.contact-box h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.contact-box p {
+    color: gray;
+    font-size: 0.9em;
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register a Complaint</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylefordevicecam.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-title">FIX MY WAY</div>
+    <div class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+    </div>
+  </div>
+</nav>
+
+<div class="main-wrapper">
+  <!-- Left Side: Complaint Form -->
+  <div class="container">
+    <h2>Register a Complaint</h2>
+    <p>Fill in the details below to submit a pothole complaint.</p>
+
+    <form id="complaintForm">
+      <label>Phone Number</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter your 10-digit phone number" maxlength="10" oninput="validatePhone(this)" required>
+      <small id="phoneWarning" style="color: red; display: none;">Please enter a valid 10-digit phone number</small>
+
+      <label>Select Highway</label>
+      <select name="highway" required>
+        <option value="">-- Select a National Highway --</option>
+        <option value="NH-3">NH-3 (Agra–Mumbai Highway)</option>
+        <option value="NH-7">NH-7 (Varanasi–Kanyakumari Highway)</option>
+        <option value="NH-12">NH-12 (Jabalpur–Jaipur Highway)</option>
+        <option value="NH-26">NH-26 (Jhansi–Lakhnadon Highway)</option>
+        <option value="NH-27">NH-27 (Porbandar–Silchar Highway)</option>
+        <option value="NH-30">NH-30 (Sitarganj–Raipur Highway)</option>
+        <option value="NH-44">NH-44 (Srinagar–Kanyakumari Highway)</option>
+        <option value="NH-46">NH-46 (Gwalior–Betul Highway)</option>
+        <option value="NH-52">NH-52 (Sangrur–Ankola Highway)</option>
+        <option value="NH-59">NH-59 (Indore–Jhabua Highway)</option>
+        <option value="NH-75">NH-75 (Gwalior–Rewa Highway)</option>
+        <option value="NH-86">NH-86 (Bhopal–Sagar Highway)</option>
+        <option value="NH-146">NH-146 (Bhopal Bypass Highway)</option>
+      </select>
+
+      <label for="getLocationBtn">Location</label>
+      <div class="location-group">
+        <button type="button" id="getLocationBtn" onclick="getLocation()">📍 Get Location</button>
+        <p id="locationDisplayBtn">Location will appear here</p>
+        <input type="hidden" id="locationHiddenInput" name="location">
+      </div>
+
+      <div id="formImagePreview" style="margin: 10px 0;"></div>
+
+      <label>Landmark</label>
+      <textarea rows="4" name="landmark" placeholder="Enter the landmark of the pothole..." required></textarea>
+
+      <!-- Hidden file input to simulate image submission -->
+      <input type="file" name="image" id="imageInput" accept="image/*" style="display: none;" />
+
+      <button type="submit" class="submit-btn">Submit Complaint</button>
+    </form>
+  </div>
+
+  <!-- Right Side: Camera Section -->
+  <div class="camera-section">
+    <div class="image-holder" id="imageHolder">
+      <img id="placeholderImage" src="data:image/png;base64,..." alt="placeholder" />
+      <video id="cameraFeed" autoplay playsinline style="display: none;"></video>
+      <canvas id="canvas" style="display: none;"></canvas>
+      <img id="snapshot" style="display: none;" />
+    </div>
+
+    <div class="camera-buttons" id="cameraButtons">
+      <button onclick="startCamera()" id="accessBtn">🎥 Access Camera</button>
+      <div id="actionButtons" style="display: none;">
+        <button type="button" onclick="takePicture()">📸 Take Picture</button>
+        <button type="button" onclick="uploadPicture()">⬆️ Upload Picture</button>
+        <button type="button" onclick="retakePicture()">🔁 Retake Picture</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript Section -->
+<script>
+  let stream = null;
+  let imageUploaded = false;
+  let uploadedBlob = null;
+  let locationFetched = false;
+
+  function validatePhone(input) {
+    input.value = input.value.replace(/\D/g, '');
+    const warning = document.getElementById("phoneWarning");
+    warning.style.display = input.value.length === 10 ? "none" : "block";
+  }
+
+  async function startCamera() {
+    const video = document.getElementById("cameraFeed");
+    const placeholder = document.getElementById("placeholderImage");
+    const actionBtns = document.getElementById("actionButtons");
+    const accessBtn = document.getElementById("accessBtn");
+
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+      video.style.display = "block";
+      placeholder.style.display = "none";
+      actionBtns.style.display = "block";
+      accessBtn.style.display = "none";
+      video.play();
+    } catch (error) {
+      alert("❌ Camera access denied or not available.");
+    }
+  }
+
+  function takePicture() {
+    const video = document.getElementById("cameraFeed");
+    const canvas = document.getElementById("canvas");
+    const snapshot = document.getElementById("snapshot");
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const context = canvas.getContext("2d");
+    context.drawImage(video, 0, 0);
+
+    const imageDataURL = canvas.toDataURL("image/png");
+    snapshot.src = imageDataURL;
+    snapshot.style.display = "block";
+    video.style.display = "none";
+  }
+
+  function uploadPicture() {
+    const canvas = document.getElementById("canvas");
+
+    canvas.toBlob((blob) => {
+      uploadedBlob = blob;
+      imageUploaded = true;
+
+      const formImageContainer = document.getElementById("formImagePreview");
+      const previewURL = URL.createObjectURL(blob);
+
+      formImageContainer.innerHTML = `
+        <label style="font-weight: bold; margin-top: 10px; display: block;">📸 Uploaded Image Preview:</label>
+        <img src="${previewURL}" alt="Uploaded Image" 
+             style="width: 100%; max-width: 250px; height: auto; border-radius: 10px; 
+             box-shadow: 0 2px 8px rgba(0,0,0,0.2); margin-top: 10px;" />
+      `;
+
+      alert("✅ Picture uploaded and reflected in the form.");
+    }, 'image/png');
+  }
+
+  function retakePicture() {
+    const formImageContainer = document.getElementById("formImagePreview");
+    const video = document.getElementById("cameraFeed");
+    const snapshot = document.getElementById("snapshot");
+
+    formImageContainer.innerHTML = "";
+    imageUploaded = false;
+    uploadedBlob = null;
+    snapshot.style.display = "none";
+    video.style.display = "block";
+
+    startCamera();
+  }
+
+  function getLocation() {
+    const display = document.getElementById("locationDisplayBtn");
+    const hiddenInput = document.getElementById("locationHiddenInput");
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude.toFixed(6);
+          const lon = position.coords.longitude.toFixed(6);
+          display.textContent = `Latitude,Longitude: ${lat} ${lon}`;
+          hiddenInput.value = `${lat},${lon}`;
+          locationFetched = true;
+          alert("📍 Location accessed successfully!");
+        },
+        (error) => {
+          locationFetched = false;
+          const displayMsg = {
+            1: "❌ Location access denied.",
+            2: "⚠️ Location unavailable.",
+            3: "⏰ Location request timed out.",
+          }[error.code] || "❓ Unknown error.";
+          display.textContent = displayMsg;
+        }
+      );
+    } else {
+      alert("🚫 Geolocation not supported.");
+      locationFetched = false;
+    }
+  }
+
+  document.getElementById("complaintForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!locationFetched) {
+      alert("📍 Please fetch your location before submitting the form.");
+      return;
+    }
+
+    if (!imageUploaded || !uploadedBlob) {
+      alert("📸 Please upload a picture before submitting the complaint.");
+      return;
+    }
+
+    const form = e.target;
+    const phone = form.phone.value;
+    const highway = form.highway.value;
+    const location = form.location.value;
+    const landmark = form.landmark.value;
+
+    const formData = new FormData();
+    formData.append("phone", phone);
+    formData.append("highway", highway);
+    formData.append("location", location);
+    formData.append("landmark", landmark);
+    formData.append("image", uploadedBlob, "snapshot.png");
+
+    fetch("/devicecam", {
+      method: "POST",
+      body: formData,
+    })
+      .then(response => {
+        if (response.redirected) {
+          window.location.href = response.url;
+        } else {
+          alert("Something went wrong submitting the form.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("Error while submitting complaint.");
+      });
+  });
+</script>
+
+</body>
+</html>

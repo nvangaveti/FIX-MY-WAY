@@ -1,0 +1,177 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background & Font */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: url('https://media.istockphoto.com/id/538665318/photo/modern-buildings-with-empty-road.jpg?s=612x612&w=0&k=20&c=-sZ2qOT5M7YcO1bDcK7X34mRp-_fWuMuV3R-LZHySog=') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #1f1f1f;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-links li a:hover {
+  color: #f50057;
+}
+
+/* Container */
+.container {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+/* Make form wider */
+.form-card {
+  background-color: rgba(255, 255, 255, 0.96);
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1000px; /* increase from 500px to stretch more */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.form-box {
+  width: 90%;
+  max-width: 1000px; /* increased from 800px */
+  margin: auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+    .form-box h2,
+.form-box p {
+  text-align: center;
+
+
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.form-box p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.form-box label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px; /* tighter label spacing */
+}
+
+.form-box input,
+.form-box select,
+.form-box textarea {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 12px; /* reduced spacing between fields */
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.form-box textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-box button:hover {
+  background-color: #333;
+}
+
+
+/* Get Location Button */
+button[type="button"] {
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+button[type="button"]:hover {
+  background-color: #333;
+}
+
+/* Location text */
+#location-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Submit Button */
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #333;
+}

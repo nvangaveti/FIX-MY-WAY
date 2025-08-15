@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix My Way - Register Complaint</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleforuploadfiles.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">FIX MY WAY</div>
+        <ul class="nav-links">
+            <li><a onclick="window.location.href='test_2.html'">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="logo">FIX MY WAY</div>
+  <ul class="nav-links">
+    
+  </ul>
+</nav>
+<form id="complaintForm" action="/upload" method="POST" enctype="multipart/form-data">
+  <div class="container">
+    <div class="form-box">
+      <h2>Register a Complaint</h2>
+      <p>Fill in the details below to submit a pothole complaint.</p>
+
+      <label>Phone Number</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter your 10-digit phone number" maxlength="10" oninput="validatePhone(this)" required>
+      <small id="phoneWarning" style="color: red; display: none;">Please enter a valid 10-digit phone number</small>
+
+      <label>Select Highway</label>
+      <select name="highway" required>
+        <option value="">-- Select a National Highway --</option>
+        <option value="NH-3">NH-3 (Agra–Mumbai Highway)</option>
+        <option value="NH-7">NH-7 (Varanasi–Kanyakumari Highway)</option>
+        <option value="NH-12">NH-12 (Jabalpur–Jaipur Highway)</option>
+        <option value="NH-26">NH-26 (Jhansi–Lakhnadon Highway)</option>
+        <option value="NH-27">NH-27 (Porbandar–Silchar Highway)</option>
+        <option value="NH-30">NH-30 (Sitarganj–Raipur Highway)</option>
+        <option value="NH-44">NH-44 (Srinagar–Kanyakumari Highway)</option>
+        <option value="NH-46">NH-46 (Gwalior–Betul Highway)</option>
+        <option value="NH-52">NH-52 (Sangrur–Ankola Highway)</option>
+        <option value="NH-59">NH-59 (Indore–Jhabua Highway)</option>
+        <option value="NH-75">NH-75 (Gwalior–Rewa Highway)</option>
+        <option value="NH-86">NH-86 (Bhopal–Sagar Highway)</option>
+        <option value="NH-146">NH-146 (Bhopal Bypass Highway)</option>
+      </select>
+
+      <label for="getLocationBtn">Location</label>
+      <div class="location-group">
+        <button type="button" id="getLocationBtn" onclick="getLocation()">📍 Get Location</button>
+        <p id="locationDisplayBtn">Location will appear here</p>
+        <input type="hidden" id="locationHiddenInput" name="location">
+      </div>
+
+      <label>Upload Image</label>
+      <input type="file" name="file" required>
+
+      <label>Landmark</label>
+      <textarea name="landmark" rows="4" placeholder="Enter the landmark of the pothole..." required></textarea>
+
+      <button class="btn" type="submit">Submit Complaint</button>
+    </div>
+  </div>
+</form>
+
+
+
+      
+
+  <script>
+  let locationFetched = false;
+
+  function getLocation() {
+    const display = document.getElementById("locationDisplayBtn");
+    const hiddenInput = document.getElementById("locationHiddenInput");
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude.toFixed(6);
+          const lon = position.coords.longitude.toFixed(6);
+          display.textContent = `Latitude,Longitude: ${lat} ${lon}`;
+          hiddenInput.value = `${lat},${lon}`;
+          locationFetched = true;
+          alert("📍 Location accessed successfully!");
+        },
+        (error) => {
+          locationFetched = false;
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              alert("❌ Location access denied.");
+              display.textContent = "Location access denied.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              alert("⚠️ Location unavailable.");
+              display.textContent = "Location unavailable.";
+              break;
+            case error.TIMEOUT:
+              alert("⏰ Location request timed out.");
+              display.textContent = "Location request timed out.";
+              break;
+            default:
+              alert("❓ Unknown error.");
+              display.textContent = "Unknown error occurred.";
+          }
+        }
+      );
+    } else {
+      alert("🚫 Geolocation not supported.");
+      display.textContent = "Geolocation is not supported by your browser.";
+      locationFetched = false;
+    }
+  }
+
+  // Prevent form submission if location is not fetched
+  document.getElementById("complaintForm").addEventListener("submit", function (e) {
+    if (!locationFetched) {
+      e.preventDefault();
+      alert("📍 Please fetch your location before submitting the form.");
+    }
+  });
+</script>
+
+
+
+
+  <script>
+  function validatePhone(input) {
+    // Remove all non-digit characters
+    input.value = input.value.replace(/\D/g, '');
+
+    const warning = document.getElementById("phoneWarning");
+
+    if (input.value.length === 10) {
+      warning.style.display = "none";
+    } else {
+      warning.style.display = "block";
+    }
+  }
+</script>
+
+
+
+
+
+
+
+<script>
+
+
+document.getElementById("complaintForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent default form submit
+    alert("✅ Thank you for applying!");
+
+    // Now actually submit the form
+    this.submit();
+});
+
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>

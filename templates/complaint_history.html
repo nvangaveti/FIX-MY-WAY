@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complaint History</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleforcomplaint_history.css') }}">
+</head>
+<body>
+
+<nav>
+  <div class="navbar">
+    <div class="logo">FIX MY WAY</div>
+    <ul class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+    </ul>
+  </div>
+</nav>
+
+<div class="overlay-box">
+  <h2 class="section-title">Registered Complaints</h2>
+  <table class="complaint-table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Phone No</th>
+        <th>Location</th>
+        <th>Highway Number</th>
+        <th>Image URL</th>
+        <th>Pothole Count</th>
+        <th>Detected Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in complaints %}
+      <tr>
+        <td>{{ row[0] }}</td> <!-- ID -->
+        <td>{{ row[1] }}</td> <!-- Phone Number -->
+        <td>{{ row[3] }}</td> <!-- Location -->
+        <td>{{ row[2] }}</td> <!-- Highway -->
+        <td>{{ row[7] }}</td> <!-- image_url -->
+        <td>{{ row[6] }}</td> <!-- pothole_count --> 
+        {% set image_path = row[7].replace('static\\', '').replace('\\', '/') %}
+<td>
+  {% set clean_path = row[7].replace('\\', '/').split('/')[-1] %}
+<a href="{{ url_for('static', filename='detected_potholes/' ~ clean_path) }}" target="_blank">
+  <img src="{{ url_for('static', filename='detected_potholes/' ~ clean_path) }}" width="100" alt="Processed Image">
+</a>
+<div>Processed Image<br>Potholes: {{ row[6] }}</div>
+
+</td>
+
+
+          </a>
+        </td>
+       
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

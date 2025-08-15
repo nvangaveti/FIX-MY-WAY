@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIX MY WAY</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <div class="logo">FIX MY WAY</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Complaint</a></li>
+                <li><a href="#portfolio">Complaint History</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="overlay">
+            <h1>WELCOME TO FIX MY WAY</h1>
+            <p>A modern and responsive website for a complaint registration system
+            <br> Using Machine learning for the highways in Madhya Pradesh state </p>
+             <a href="#services"><button> REGISTER COMPLAINT </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>ABOUT FIX MY WAY </h2>
+        <a href="#" class="no-underline"></a>
+        <p>Pothole detection and complaint registration website using Machine learning </p>
+        <a href="#" class="no-underline"></a>
+        <div class="about-content">
+            <div class="text">
+                <h3>Smart Road Maintenance System</h3>
+                <p><em>Using AI and automation for efficient pothole detection and complaint management.</em></p>
+                <ul>
+                    <li>✔ ML-Based Pothole Detection – Identify potholes from images/videos.</li>
+                    <li>✔ Automated Complaint System – Register complaints instantly.</li>
+                    <li>✔ Real-time Monitoring – Track potholes and complaints.</li>
+                </ul>
+            </div>
+            <div class="image">
+                <img src="https://media.istockphoto.com/id/1306118503/photo/negative-feedback-and-rate-with-bad-smile-face.jpg?s=612x612&w=0&k=20&c=08r9PnYam2WeYkeHX5vDN6z_ufGWQ5UA_Wp2tnPJMo0=" alt="About Image">
+            </div>
+        </div>
+    </section>
+
+<!-- Services Section -->
+<section id="services" class="services">
+    <div class="container">
+        <h2 class="section-title">Complaint Registration</h2>
+        <p class="section-subtitle">
+            <a href="#" class="no-underline"></a>
+            Using AI and automation for efficient pothole detection and complaint management.
+        </p>
+        
+
+        
+        <div class="services-grid">
+    <!-- Service 1 -->
+    <div class="service-box" onclick="window.location.href='dashcam';">
+        <div class="image-holder">
+            <img src="{{ url_for('static', filename='images/Dashcamimage.jpg') }}" alt="Dashcam">
+
+        </div>
+        <h3>Using Dashcam</h3>
+        <p>Automatically detect potholes while driving with a dashcam. The system captures real-time footage, identifies road issues, and reports them instantly.</p>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="service-box" onclick="window.location.href='/devicecam';">
+        <div class="image-holder">
+            <img src="data:image/jpeg;base64,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" alt="Device Camera">
+        </div>
+        <h3>Using Device Cam</h3>
+        <p>Use your mobile device's camera to take pictures or record videos of potholes. The AI analyzes the images and submits complaints seamlessly.</p>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-box" onclick="window.location.href='upload';">
+        <div class="image-holder">
+            <img src="{{ url_for('static', filename='images/uploadimage.png') }}" alt="Upload File">
+        </div>
+        <h3>Upload File</h3>
+        <p>Upload pre-recorded images or videos of potholes from your device. The system processes the data and registers a complaint efficiently.</p>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio" class="portfolio-section">
+    <div class="portfolio-content">
+        <h2>Complaint History</h2>
+        <p>Explore all the pothole complaints registered in our website.</p>
+        <a href='complaint_history' class="portfolio-btn">View Registered Complaints</a>
+    </div>
+</section>
+
+
+
+
+    <!-- jQuery Smooth Scroll -->
+    <script>
+        $(document).ready(function(){
+            $("nav ul li a").click(function(e){
+                if(this.hash !== ""){
+                    e.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">CONTACT</h2>
+        <p class="section-subtitle">
+            A Bootstrapped Website Made For Internal Project In Vit Bhopal University
+        </p>
+
+        <div class="contact-grid">
+            <!-- Address -->
+            <div class="contact-box">
+                <div class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRafIyybHte9g9YSWnhAcxIS_Slh9VAVgPIdA&s" alt="Address Icon">
+                </div>
+                <h3 style="color: black;">Address</h3>
+                <p>VIT Bhopal University <br> Sehore , MP 466114</p>
+            </div>
+
+            <!-- Call Us -->
+            <div class="contact-box">
+                <div class="icon">
+                    <img src="https://img.icons8.com/color/48/phone.png" alt="Phone Icon">
+                </div>
+              <h3 style="color: black;">Call Us</h3>
+                <p>+91 8815654530</p>
+            </div>
+
+            <!-- Email Us -->
+            <div class="contact-box">
+                <div class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK0tH3P_IUzrziMkzVNcTu-sA19kwepN9YXVXygaW4Af8zeNnUeB6nbyE&s" alt="Email Icon">
+                </div>
+                <h3 style="color: black;">Email Us</h3>
+                <p>testmail@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
